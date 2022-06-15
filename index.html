@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>IT Project Form</title>
+  <br /><br />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans" rel="stylesheet"><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<section class="contact-form">
+  <h1>IT Project Creation Form</h1><br />
+  <per>Use this form to create a new IT project.</per>
+
+  <form action = "form.php" method = "post">
+
+    <div class="column">
+
+    <fieldset id="field-form">
+      <legend>Project Information</legend>
+
+    <div class="input-group">
+      <label for="project_id">Project ID</label>
+      <input id="project_id" name="project_id" type="text"/>
+    </div>
+
+    <div class="input-group">
+      <label for="project_name">Project Name</label>
+      <input id="project_name" name="project_name" type="text"/>
+    </div>
+
+    <div class="input-group">
+      <label for="scope">Scope</label>
+      <textarea id="scope" name="scope" rows="6" cols="55"></textarea>
+    </div>
+
+    <div class="input-group">
+      <label for="sponsor">Sponsor(s)</label>
+      <input id="sponsor" name="sponsor" type="text"/>
+    </div>
+
+    <div class="input-group">
+      <label for="buiness_lead">Buiness Lead(s)</label>
+      <input id="buiness_lead" name="buiness_lead" type="text"/>
+    </div>
+
+    <div class="input-group">
+      <label for="it_lead">IT Lead</label>
+      <input id="it_lead" name="it_lead" type="text"/>
+    </div>
+
+    </fieldset>
+
+    <fieldset id="buildyourform">
+      <legend>Project Health</legend>
+
+    <div class="input-group">
+      <label for="schedule">Schedule</label>
+      <select id="schedule" name="schedule">
+        <option>On-Track</option>
+        <option>At-Risk</option>
+        <option>Delayed</option>
+        <option>Completed</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="financial">Financial</label>
+      <select id="financial" name="financial">
+        <option>On-Track</option>
+        <option>At-Risk</option>
+        <option>Delayed</option>
+        <option>Completed</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="functionality">Functionality</label>
+      <select id="functionality" name="functionality">
+        <option>On-Track</option>
+        <option>At-Risk</option>
+        <option>Delayed</option>
+        <option>Completed</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="start">Updated:</label>
+      <input type="date" id="last_updated" name="last_updated"
+       min="2022-01-01" max="2099-12-31">
+    </div>
+  </fieldset>
+
+  <fieldset id="input-group">
+    <legend>Add Milestones</legend>
+    <button href="#" id="filldetails" onclick="addFields()">Add Milestone +</button>
+
+    <div class="input-group">
+          <p> Major Milestone 1: </p>
+          <input type="text" id="milestone" name="milestone" placeholder="Name"/>
+          <p>Baseline Due Date: </p>
+          <input type="date" id="baseline_due_date" name="baseline_due_date"
+           min="2022-01-01" max="2099-12-31">
+          <p>Revised Due Date: </p>
+          <input type="date" id="revised_due_date" name="revised_due_date"
+           min="2022-01-01" max="2099-12-31">
+          <p>Status: </p>
+          <select id="status" name="status">
+            <option value="Future">Future</option>
+            <option value="In-Process">In-Process</option>
+            <option value="At Risk">At Risk</option>
+            <option value="Delayed">Delayed</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <input type="number" min="1" max="100" id="percent_complete" name="percent_complete" placeholder="% Complete"/>
+          <textarea id="comments" name="comments" rows="6" cols="55" placeholder="Comments"></textarea>
+        <div id="container"/>
+    </div>
+  </fieldset>
+
+</div>
+
+  <fieldset id="input-group">
+    <legend>Issues / Risks / Decisions & Mitigations</legend>
+    <button href="#" id="filldetails2" onclick="addFields2()">Add Issue/Risk +</button>
+
+    <div class="input-group">
+          <p> Issue/Risk 1: </p>
+          <input type="text" id="issue-risk" name="issue-risk" placeholder="Name"/>
+          <p>Due Date: </p>
+          <input type="date" id="due_date" name="due_date"
+           min="2022-01-01" max="2099-12-31">
+          <p>Type: </p>
+          <select id="type" name="type">
+            <option value="Issue">Issue</option>
+            <option value="Risk">Risk</option>
+            <option value="Decision">Decision</option>
+          </select>
+          <textarea id="mitigation" name="mitigation" rows="6" cols="55" placeholder="Mitigation"></textarea>
+        <div id="container2"/>
+    </div>
+  </fieldset>
+
+  <div class="buttom">
+
+      <button type="submit">Create Project</button>
+
+    <div id="container2"/>
+  </div>
+
+
+  </form>
+</section>
+
+<div class="results">
+  <br /><br />
+  <h2>Form Data</h2>
+  <pre></pre>
+</div>
+<!-- partial -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script  src="./script.js"></script>
+
+</body>
+</html>
