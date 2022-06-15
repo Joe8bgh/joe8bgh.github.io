@@ -14,12 +14,25 @@ function handleFormSubmit(event) {
   const project_json = JSON.stringify(formJSON, null, 2);
   console.log(project_json);
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "https://0777uhrhni.execute-api.us-east-1.amazonaws.com" , true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({
-    value: project_json
-  }));
+  //var xhr = new XMLHttpRequest();
+  //xhr.open("POST", "https://0777uhrhni.execute-api.us-east-1.amazonaws.com" , true);
+  //xhr.setRequestHeader('Content-Type', 'application/json');
+  //xhr.send(JSON.stringify({
+  //  value: project_json
+  //}));
+
+  fetch('https://tdy79gmiak.execute-api.us-east-1.amazonaws.com', {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    // body: '{"id": "abcdef234", "price": 12345, "name": "myitem"}',
+    body: JSON.stringify({
+        'id': 'abcdef234',
+        'price': 12345,
+        'name': 'myitem'
+    })
+});
 
 }
 
