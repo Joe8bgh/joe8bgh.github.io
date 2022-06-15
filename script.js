@@ -15,7 +15,7 @@ function handleFormSubmit(event) {
   console.log(project_json);
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "form.php" , true);
+  xhr.open("POST", "https://0777uhrhni.execute-api.us-east-1.amazonaws.com" , true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify({
     value: project_json
