@@ -17,14 +17,11 @@ function handleFormSubmit(event) {
   var xhr = new XMLHttpRequest();
   xhr.open("PUT", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com/items" , true);
   xhr.setRequestHeader('Content-Type', '*');
-  xhr.send(JSON.stringify({
+  xhr.send({
       'id': 'abcdef234',
       'price': 12345,
       'name': 'myitem'
-  }));
-
-
-
+  });
 
 
 }
