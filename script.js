@@ -16,7 +16,7 @@ function handleFormSubmit(event) {
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com/items" , true);
-  xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+  xhr.setRequestHeader('Content-Type', '*');
   xhr.send(JSON.stringify({
       'id': 'abcdef234',
       'price': 12345,
