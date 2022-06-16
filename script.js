@@ -22,15 +22,6 @@ function handleFormSubmit(event) {
       'price': 12345,
       'name': 'myitem'
   });
-
-  let jsonData = '{
-    "firstName":"harsh",
-    lastName:"mangalam"
-  }'
-
-
-
-
 }
 
 var x = 1;
