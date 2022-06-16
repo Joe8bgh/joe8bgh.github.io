@@ -21,7 +21,7 @@ function handleFormSubmit(event) {
   //  value: project_json
   //}));
 
-  fetch('https://tdy79gmiak.execute-api.us-east-1.amazonaws.com', {
+  fetch('https://tdy79gmiak.execute-api.us-east-1.amazonaws.com/Dev', {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json'
