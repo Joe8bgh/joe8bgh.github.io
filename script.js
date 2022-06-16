@@ -14,14 +14,16 @@ function handleFormSubmit(event) {
   const project_json = JSON.stringify(formJSON, null, 2);
   console.log(project_json);
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("PUT", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com/items" , true);
-  xhr.setRequestHeader('Content-Type', '*');
-  xhr.send({
+  const item = JSON.stringify({
       'id': 'abcdef234',
       'price': 12345,
       'name': 'myitem'
-  });
+  })
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("PUT", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com/items" , true);
+  xhr.setRequestHeader('Content-Type', '*');
+  xhr.send(item);
 
 
 }
