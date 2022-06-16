@@ -15,7 +15,7 @@ function handleFormSubmit(event) {
   console.log(project_json);
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com" , true);
+  xhr.open("PUT", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com" , true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify({
       'id': 'abcdef234',
