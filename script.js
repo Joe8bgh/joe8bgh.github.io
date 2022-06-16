@@ -14,32 +14,26 @@ function handleFormSubmit(event) {
   const project_json = JSON.stringify(formJSON, null, 2);
   console.log(project_json);
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "	https://np9u4av9mc.execute-api.us-east-1.amazonaws.com" , true);
-
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({
-    value: project_json
-  }));
-
+  //var xhr = new XMLHttpRequest();
+  //xhr.open("POST", "https://0777uhrhni.execute-api.us-east-1.amazonaws.com" , true);
+  //xhr.setRequestHeader('Content-Type', 'application/json');
+  //xhr.send(JSON.stringify({
+  //  value: project_json
+  //}));
 
 
-  xhr.setRequestHeader("Content-Type", "application/json");
-
-  xhr.onreadystatechange = function () {
-   if (xhr.readyState === 4) {
-      console.log(xhr.status);
-      console.log(xhr.responseText);
-   }};
-
-  var data = `{
-    "Id": abcdef234,
-    "price": "12345",
-    "name": myitem
-  }`;
-
-  xhr.send(data);
-
+  fetch('	https://np9u4av9mc.execute-api.us-east-1.amazonaws.com', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    // body: '{"id": "abcdef234", "price": 12345, "name": "myitem"}',
+    body: JSON.stringify({
+        'id': 'abcdef234',
+        'price': 12345,
+        'name': 'myitem'
+    })
+  });
 
 }
 
