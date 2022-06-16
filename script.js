@@ -15,8 +15,8 @@ function handleFormSubmit(event) {
   console.log(project_json);
 
   var xhr = new XMLHttpRequest();
-  xhr.open("PUT", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com/items" , true);
-  
+  xhr.open("PUT", "https://b1ljlllud4.execute-api.us-east-1.amazonaws.com/items" , true);
+
   xhr.send(JSON.stringify({
       'id': 'abcdef234',
       'price': 12345,
