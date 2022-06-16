@@ -23,7 +23,7 @@ function handleFormSubmit(event) {
       'name': 'myitem'
   }));
 
-  console.warn(xhr.responseText);
+  console.warn(xhr.responseText)
 
 
 
