@@ -18,14 +18,10 @@ function handleFormSubmit(event) {
   xhr.open("PUT", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com/items" , true);
   xhr.setRequestHeader('Content-Type', '*');
   xhr.send(JSON.stringify({
-      'id': 'abcdef234',
+      'id': 'New Project',
       'price': 12345,
       'name': 'myitem'
   }));
-
-
-
-
 }
 
 var x = 1;
