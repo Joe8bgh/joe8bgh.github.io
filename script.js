@@ -14,16 +14,13 @@ function handleFormSubmit(event) {
   const project_json = JSON.stringify(formJSON, null, 2);
   console.log(project_json);
 
-
+  const json = '{"id":abcdef234, "price":42, "name":myItem}';
+  const obj = JSON.parse(json);
 
   var xhr = new XMLHttpRequest();
   xhr.open("PUT", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com/items" , true);
   xhr.setRequestHeader('Content-Type', '*');
-  xhr.send(JSON.parse({
-      'id': 'abcdef234',
-      'price': 12345,
-      'name': 'myitem'
-  }));
+  xhr.send(obj);
 }
 
 var x = 1;
