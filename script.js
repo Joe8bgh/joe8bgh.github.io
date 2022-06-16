@@ -22,9 +22,6 @@ function handleFormSubmit(event) {
   //}));
 
 
-
-
-
   fetch('https://tdy79gmiak.execute-api.us-east-1.amazonaws.com', {
     method: 'PUT',
     headers: {
