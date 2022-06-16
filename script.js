@@ -21,6 +21,7 @@ function handleFormSubmit(event) {
   //  value: project_json
   //}));
 
+
   fetch('https://tdy79gmiak.execute-api.us-east-1.amazonaws.com/Dev', {
     method: 'PUT',
     headers: {
@@ -32,7 +33,19 @@ function handleFormSubmit(event) {
         'price': 12345,
         'name': 'myitem'
     })
-});
+  });
+  function errorResponse(errorMessage, awsRequestId, callback) {
+  callback(null, {
+    statusCode: 500,
+    body: JSON.stringify({
+      Error: errorMessage,
+      Reference: awsRequestId,
+    }),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+    });
+  }
 
 }
 
