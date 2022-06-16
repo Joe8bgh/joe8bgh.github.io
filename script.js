@@ -24,18 +24,7 @@ function handleFormSubmit(event) {
   }));
 
 
-  fetch('', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    // body: '{"id": "abcdef234", "price": 12345, "name": "myitem"}',
-    body: JSON.stringify({
-        'id': 'abcdef234',
-        'price': 12345,
-        'name': 'myitem'
-    })
-  });
+
 
 }
 
