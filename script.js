@@ -19,7 +19,7 @@ function handleFormSubmit(event) {
   var xhr = new XMLHttpRequest();
   xhr.open("PUT", "https://np9u4av9mc.execute-api.us-east-1.amazonaws.com/items" , true);
   xhr.setRequestHeader('Content-Type', '*');
-  xhr.send(JSON.parse(json));
+  xhr.send(json);
 }
 
 var x = 1;
