@@ -16,12 +16,7 @@ function handleFormSubmit(event) {
 
   var xhr = new XMLHttpRequest();
   xhr.open("PUT", "https://b1ljlllud4.execute-api.us-east-1.amazonaws.com/items" , true);
-
-  xhr.send(JSON.stringify({
-      'id': 'ghijkl567',
-      'price': 56789,
-      'name': 'myitemtwo'
-  }));
+  xhr.send(project_json);
 
 
 }
