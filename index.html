@@ -62,6 +62,27 @@
           }
       });
   }
+
+
+  function readItem() {
+
+      var docClient = new AWS.DynamoDB.DocumentClient();
+
+      var params = {
+          TableName: "http-crud-tutorial-function",
+          Key:{
+              "FirstName": "22-003",// Partition Key
+          }
+      };
+      docClient.get(params, function(err, data) {
+          if (err) {
+              document.getElementById('textarea').innerHTML = "Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2);
+          } else {
+              document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
+          }
+      });
+  }
+
   </script>
 </head>
 
