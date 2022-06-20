@@ -1,208 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
-  <title>IT Project Form</title>
+  <title>IT Project Dashboard</title>
   <br /><br />
   <link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
 
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+  <script src="js/aws-cognito-sdk.js"></script>
+  <script src="js/amazon-cognito-identity.min.js"></script>
+  <script src="./script.js"></script>
+  <script>
+
+  var idToken = null;
+
+  function checkLogin() {
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      idToken = url.searchParams.get("id_token");
+      if (idToken != null) {
+        document.getElementById("welcomMsg").innerHTML = "signed in"
+        auth();
+      }
+  }
+
+  function auth() {
+      AWs.config.update({
+        region: "us-east-01",
+      });
+
+      AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId : 'us-east-1:6a5e7f11-0c0c-4042-b39b-06cc31812173',
+        Logins : {
+          "cognito-idp.us-east-1.amazonaws.com/us-east-1_lfIHIUs1c": idToken
+        }
+      });
+  }
+
+
+
+  function insertItem() {
+
+      const x = {
+      "id": "22-003",
+      "project": "id: 22-003,project_name: Test Project 3,scope: ,sponsor: ,buiness_lead: ,it_lead: ,schedule: On-Track,financial: On-Track,functionality: N/A,last_updated: ,next_steps: ,notes: ,project_start: ,project_end: ,go_live: ,milestone: ,baseline_due_date: ,revised_due_date: ,status: Future,percent_complete: ,comments: ,issue-risk: ,due_date: ,type: Issue,mitigation: n"
+      };
+
+      var docClient = new AWS.DynamoDB.DocumentClient();
+
+      var params = {
+          TableName :"http-crud-tutorial-function",
+          Item:x
+      };
+      docClient.put(params, function(err, data) {
+          if (err) {
+              document.getElementById('textarea').innerHTML = "Unable to add item: " + "\n" + JSON.stringify(err, undefined, 2);
+          } else {
+              document.getElementById('textarea').innerHTML = "PutItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
+          }
+      });
+  }
+  </script>
 </head>
 
-<body>
+<body onload="checkLogin()">
 
-  <fieldset class="contact-form">
-    <fieldset>
-      <h1>IT Project Form</h1><br />
-      <hr />
-      <div id="inner2" class="inner2">
-      </div>
-    <div class="results">
-      <pre></pre>
-    </div>
-    <div id="inner" class="inner">
-      <button id="submit" type="submit" style="visibility:visible" form="form">Create Project</button>
-    </div>
-    <div id="inner3" class="inner3">
-    </div>
-    <form id="form">
-      <div class="column left">
+  <div id="welcomeMsg"></div><br>
 
-        <fieldset id="field-form">
-          <legend>Project Information</legend>
+  <a href="https://it-dashboard.auth.us-east-1.amazoncognito.com/login?client_id=5c2p4fucp3p123p88f1dk0081f&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://joe8bgh.github.io/">Login</a>
 
-          <div class="input-group">
-            <label for="id">Project ID</label>
-            <input id="id" name="id" type="text" />
-          </div>
+  <br><br>
+  <input type="button" value="incert Item" onclick="incertItem();" />
+  <br><br>
 
-          <div class="input-group">
-            <label for="project_name">Project Name</label>
-            <input id="project_name" name="project_name" type="text" />
-          </div>
-
-          <div class="input-group">
-            <label for="scope">Scope</label>
-            <textarea id="scope" name="scope" rows="6" cols="55"></textarea>
-          </div>
-
-          <div class="input-group">
-            <label for="sponsor">Sponsor(s)</label>
-            <input id="sponsor" name="sponsor" type="text" />
-          </div>
-
-          <div class="input-group">
-            <label for="buiness_lead">Buiness Lead(s)</label>
-            <input id="buiness_lead" name="buiness_lead" type="text" />
-          </div>
-
-          <div class="input-group">
-            <label for="it_lead">IT Lead</label>
-            <input id="it_lead" name="it_lead" type="text" />
-          </div>
-
-        </fieldset>
-
-        <fieldset id="buildyourform">
-          <legend>Project Health</legend>
-
-          <div class="input-group">
-            <label for="schedule">Schedule</label>
-            <select id="schedule" name="schedule">
-              <option>On-Track</option>
-              <option>At-Risk</option>
-              <option>Delayed</option>
-              <option>Completed</option>
-            </select>
-          </div>
-
-          <div class="input-group">
-            <label for="financial">Financial</label>
-            <select id="financial" name="financial">
-              <option>On-Track</option>
-              <option>At-Risk</option>
-              <option>Delayed</option>
-              <option>Completed</option>
-            </select>
-          </div>
-
-          <div class="input-group">
-            <label for="functionality">Functionality</label>
-            <select id="functionality" name="functionality">
-              <option>On-Track</option>
-              <option>At-Risk</option>
-              <option>Delayed</option>
-              <option>Completed</option>
-            </select>
-          </div>
-
-          <div class="input-group">
-            <label for="start">Updated:</label><br />
-            <input type="date" id="last_updated" name="last_updated" min="2022-01-01" max="2099-12-31">
-          </div>
-        </fieldset>
-        <fieldset id="input-group">
-          <div class="input-group">
-            <label for="next_steps">Next Steps</label>
-            <textarea id="next_steps" name="next_steps" rows="6" cols="55"></textarea>
-          </div>
-
-          <div class="input-group">
-            <label for="notes">Other Notes & Remarks</label>
-            <textarea id="notes" name="notes" rows="6" cols="55"></textarea>
-          </div>
-
-          <div class="input-group">
-            <label for="start">Project Start Date:</label><br />
-            <input type="date" id="project_start" name="project_start" min="2022-01-01" max="2099-12-31">
-          </div>
-
-          <div class="input-group">
-            <label for="start">Project End Date:</label><br />
-            <input type="date" id="project_end" name="project_end" min="2022-01-01" max="2099-12-31">
-          </div>
-
-          <div class="input-group">
-            <label for="start">GO-LIVE:</label><br />
-            <input type="date" id="go_live" name="go_live" min="2022-01-01" max="2099-12-31">
-          </div>
-
-          <div class="input-group">
-            <label for="functionality">Endorsement:</label>
-            <select id="functionality" name="functionality">
-              <option>N/A</option>
-              <option>Drafting for ERP SC</option>
-              <option>ERP SC Endorsed</option>
-              <option>Drafting for Council</option>
-              <option>Council Endorsed</option>
-            </select>
-          </div>
-
-          <div class="input-group">
-            <label for="functionality">Project Approval:</label>
-            <select id="functionality" name="functionality">
-              <option>N/A</option>
-              <option>Drafting for ERP SC</option>
-              <option>ERP SC Endorsed</option>
-              <option>Drafting for Council</option>
-              <option>Council Endorsed</option>
-            </select>
-          </div>
-        </fieldset>
-      </div>
-      <div class="column middle">
-        <fieldset id="input-group">
-          <legend>Add Milestones</legend>
-          <div class="input-group">
-            <p> Major Milestone 1: </p>
-            <input type="text" id="milestone" name="milestone" placeholder="Name" />
-            <p>Baseline Due Date: </p>
-            <input type="date" id="baseline_due_date" name="baseline_due_date" min="2022-01-01" max="2099-12-31">
-            <p>Revised Due Date: </p>
-            <input type="date" id="revised_due_date" name="revised_due_date" min="2022-01-01" max="2099-12-31">
-            <p>Status: </p>
-            <select id="status" name="status">
-              <option value="Future">Future</option>
-              <option value="In-Process">In-Process</option>
-              <option value="At Risk">At Risk</option>
-              <option value="Delayed">Delayed</option>
-              <option value="Completed">Completed</option>
-            </select>
-            <input type="number" min="1" max="100" id="percent_complete" name="percent_complete" placeholder="% Complete" />
-            <textarea id="comments" name="comments" rows="6" cols="55" placeholder="Comments"></textarea>
-            <button type="button" id="filldetails" onclick="addFields()">Add Milestone +</button>
-            <div id="container" />
-          </div>
-        </fieldset>
-      </div>
-      <div class="column right">
-        <fieldset id="input-group">
-          <legend>Issues / Risks / Decisions & Mitigations</legend>
-          <div class="input-group">
-            <p> Issue/Risk 1: </p>
-            <input type="text" id="issue-risk" name="issue-risk" placeholder="Name" />
-            <p>Due Date: </p>
-            <input type="date" id="due_date" name="due_date" min="2022-01-01" max="2099-12-31">
-            <p>Type: </p>
-            <select id="type" name="type">
-              <option value="Issue">Issue</option>
-              <option value="Risk">Risk</option>
-              <option value="Decision">Decision</option>
-            </select>
-            <textarea id="mitigation" name="mitigation" rows="6" cols="55" placeholder="Mitigation"></textarea>
-            <button type="button" id="filldetails2" onclick="addFields2()">Add Issue/Risk +</button>
-            <div id="container2" />
-          </div>
-        </fieldset>
-      </div>
-      <br /><br /><br />
-    </form>
-    </fieldset>
-  </fieldset>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="./script.js"></script>
+  <textarea readonly id="textarea" style="width:400px; height:600px"></textarea>
 
 </body>
+<>
 
-</html>
+
+
+
+
+
+
+
+
+Pool ID:  us-east-1_lfIHIUs1c
+App Client ID: 5c2p4fucp3p123p88f1dk0081f

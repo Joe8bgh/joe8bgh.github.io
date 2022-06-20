@@ -40,7 +40,7 @@ function handleFormSubmit(event) {
   top += '\n';
   top += '}';
   top;
-  //console.log(top);
+  console.log(top);
 
 
   const btn = document.createElement("button");
