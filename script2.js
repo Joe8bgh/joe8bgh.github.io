@@ -5,7 +5,7 @@ function checkLogin() {
     var url = new URL(url_string);
     idToken = url.searchParams.get("id_token");
     if (idToken != null) {
-      welcomeMsg.appendChild(document.createElement("Login Successful"));;
+      welcomeMsg.appendChild(document.createElement("Login Successful"));
       auth();
     }
 }
