@@ -5,18 +5,13 @@ function checkLogin() {
     var url = new URL(url_string);
     idToken = url.searchParams.get("id_token");
     if (idToken != null) {
-      window.onload = function() {
-                what();
-                function what(){
-                    document.getElementById('welcomeMsg').innerHTML = 'Singed In';
-                };
-            }
+      document.getElementById("welcomMsg").innerHTML = "signed in";
       auth();
     }
 }
 
 function auth() {
-    AWs.config.update({
+    AWS.config.update({
       region: "us-east-1",
     });
 
