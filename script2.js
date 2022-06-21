@@ -5,7 +5,12 @@ function checkLogin() {
     var url = new URL(url_string);
     idToken = url.searchParams.get("id_token");
     if (idToken != null) {
-      welcomeMsg.appendChild(document.createElement("Login Successful"));
+      window.onload = function() {
+                what();
+                function what(){
+                    document.getElementById('welcomeMsg').innerHTML = 'Singed In';
+                };
+            }
       auth();
     }
 }
