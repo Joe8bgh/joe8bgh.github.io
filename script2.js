@@ -13,6 +13,11 @@ function checkLogin() {
 function auth() {
     AWS.config.update({
       region: "us-east-1",
+      //  endpoint: 'http://localhost:8000', // If you use dynamoDB installed locally
+      //  accessKeyId: "(ACCESS_KEY_ID)",
+      //  secretAccessKey: "(SECRET_ACCESS_KEY)"
+
+
     });
 
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
