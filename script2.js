@@ -1,6 +1,6 @@
 var idToken = null;
 
-function checkLogin() {
+window.onload = function checkLogin() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     idToken = url.searchParams.get("id_token");
