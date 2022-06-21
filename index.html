@@ -20,7 +20,7 @@
       var url = new URL(url_string);
       idToken = url.searchParams.get("id_token");
       if (idToken != null) {
-        document.getElementById("welcomMsg").innerHTML = "signed in"
+        document.getElementById("welcomMsg").innerHTML = "signed in";
         auth();
       }
   }
