@@ -47,7 +47,8 @@ function insertItem() {
 
     var params = {
         TableName :"http-crud-tutorial-function",
-        Item:x        
+        Item:x
+        }
     };
     docClient.put(params, function(err, data) {
         if (err) {
@@ -78,21 +79,15 @@ function insertItem() {
 function auth() {
     AWS.config.update({
       region: "us-east-2",
-    //  endpoint: 'http://localhost:8000', // If you use dynamoDB installed locally
-    //  accessKeyId: "(ACCESS_KEY_ID)",
-    //  secretAccessKey: "(SECRET_ACCESS_KEY)"
-
     });
 
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-            IdentityPoolId : '(IDENTITY POOL ID)',
-            Logins : {
-              "cognito-idp.(AWS_REGION).amazonaws.com/(POOL_ID)": idToken
-            }
-          });
+      IdentityPoolId : 'us-east-1:6a5e7f11-0c0c-4042-b39b-06cc31812173',
+      Logins : {
+        "cognito-idp.us-east-1.amazonaws.com/us-east-1_lfIHIUs1c": idToken
+        }
+    });
 }
-
-
 
 function readItem() {
 

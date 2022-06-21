@@ -15,6 +15,16 @@
 
   var idToken = null;
 
+  function checkLogin() {
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      idToken = url.searchParams.get("id_token");
+      if (idToken != null) {
+        document.getElementById("welcomMsg").innerHTML = "signed in"
+        auth();
+      }
+  }
+
   function auth() {
       AWs.config.update({
         region: "us-east-1",
@@ -26,16 +36,6 @@
           "cognito-idp.us-east-1.amazonaws.com/us-east-1_lfIHIUs1c": idToken
         }
       });
-  }
-
-  function checkLogin() {
-      var url_string = window.location.href;
-      var url = new URL(url_string);
-      idToken = url.searchParams.get("id_token");
-      if (idToken != null) {
-        document.getElementById("welcomMsg").innerHTML = "signed in"
-        auth();
-      }
   }
 
   function insertItem() {
@@ -90,7 +90,8 @@
   <a href="https://it-dashboard.auth.us-east-1.amazoncognito.com/login?client_id=5c2p4fucp3p123p88f1dk0081f&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=https://joe8bgh.github.io/">Login</a>
 
   <br><br>
-  <input type="button" value="insert Item" onclick="insertItem();" />
+  <input type="button" value="Insert Item" onclick="insertItem();" />
+  <input type="button" value="Read Item" onclick="readItem();" />
   <br><br>
 
   <textarea readonly id="textarea" style="width:400px; height:600px"></textarea>
