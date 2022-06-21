@@ -26,10 +26,15 @@
   }
 
   function auth() {
-      AWS.config.update({region:'us-east-1'});
-      var myCredentials = new AWS.CognitoIdentityCredentials({
-        IdentityPoolId:'us-east-1:6a5e7f11-0c0c-4042-b39b-06cc31812173"'
+      AWs.config.update({
+        region: "us-east-1",
       });
+
+      if (!AWS.config.region) {
+        AWS.config.update({
+          region: 'us-east-1'
+        });
+      }
 
       AWS.config.credentials = new AWS.CognitoIdentityCredentials({
         IdentityPoolId : 'us-east-1:6a5e7f11-0c0c-4042-b39b-06cc31812173',
