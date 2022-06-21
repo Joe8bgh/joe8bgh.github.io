@@ -1,14 +1,3 @@
-function getResults() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("demo").innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("GET", "https://b1ljlllud4.execute-api.us-east-1.amazonaws.com/items", true);
-    xhttp.send();
-}
-
 var idToken = null;
 
 function checkLogin() {
@@ -16,14 +5,14 @@ function checkLogin() {
     var url = new URL(url_string);
     idToken = url.searchParams.get("id_token");
     if (idToken != null) {
-      document.getElementById("welcomMsg").innerHTML = "signed in"
+      document.getElementById("welcomMsg").innerHTML = "signed in";
       auth();
     }
 }
 
 function auth() {
     AWs.config.update({
-      region: "us-east-01",
+      region: "us-east-1",
     });
 
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -33,8 +22,6 @@ function auth() {
       }
     });
 }
-
-
 
 function insertItem() {
 
@@ -48,7 +35,6 @@ function insertItem() {
     var params = {
         TableName :"http-crud-tutorial-function",
         Item:x
-        }
     };
     docClient.put(params, function(err, data) {
         if (err) {
@@ -60,44 +46,14 @@ function insertItem() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function auth() {
-    AWS.config.update({
-      region: "us-east-2",
-    });
-
-    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-      IdentityPoolId : 'us-east-1:6a5e7f11-0c0c-4042-b39b-06cc31812173',
-      Logins : {
-        "cognito-idp.us-east-1.amazonaws.com/us-east-1_lfIHIUs1c": idToken
-        }
-    });
-}
-
 function readItem() {
 
     var docClient = new AWS.DynamoDB.DocumentClient();
 
     var params = {
-        TableName: "Person",
+        TableName: "http-crud-tutorial-function",
         Key:{
-            "FirstName": "John",// Partition Key
-            "LastName": "Smith" // Sort/Range Key
+            "FirstName": "22-003",// Partition Key
         }
     };
     docClient.get(params, function(err, data) {
@@ -107,4 +63,29 @@ function readItem() {
             document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
         }
     });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getResults() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("demo").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "https://b1ljlllud4.execute-api.us-east-1.amazonaws.com/items", true);
+    xhttp.send();
 }

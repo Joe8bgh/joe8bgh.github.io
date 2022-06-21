@@ -3,84 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>IT Project Dashboard</title>
+  <title>Test Page</title>
   <br /><br />
   <link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
-
-  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
-  <script src="js/aws-cognito-sdk.js"></script>
-  <script src="js/amazon-cognito-identity.min.js"></script>
-  <script>
-
-  var idToken = null;
-
-  function checkLogin() {
-      var url_string = window.location.href;
-      var url = new URL(url_string);
-      idToken = url.searchParams.get("id_token");
-      if (idToken != null) {
-        document.getElementById("welcomMsg").innerHTML = "signed in";
-        auth();
-      }
-  }
-
-  function auth() {
-      AWs.config.update({
-        region: "us-east-1",
-      });
-
-      AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        IdentityPoolId : 'us-east-1:6a5e7f11-0c0c-4042-b39b-06cc31812173',
-        Logins : {
-          "cognito-idp.us-east-1.amazonaws.com/us-east-1_lfIHIUs1c": idToken
-        }
-      });
-  }
-
-  function insertItem() {
-
-      const x = {
-      "id": "22-003",
-      "project": "id: 22-003,project_name: Test Project 3,scope: ,sponsor: ,buiness_lead: ,it_lead: ,schedule: On-Track,financial: On-Track,functionality: N/A,last_updated: ,next_steps: ,notes: ,project_start: ,project_end: ,go_live: ,milestone: ,baseline_due_date: ,revised_due_date: ,status: Future,percent_complete: ,comments: ,issue-risk: ,due_date: ,type: Issue,mitigation: n"
-      };
-
-      var docClient = new AWS.DynamoDB.DocumentClient();
-
-      var params = {
-          TableName :"http-crud-tutorial-function",
-          Item:x
-      };
-      docClient.put(params, function(err, data) {
-          if (err) {
-              document.getElementById('textarea').innerHTML = "Unable to add item: " + "\n" + JSON.stringify(err, undefined, 2);
-          } else {
-              document.getElementById('textarea').innerHTML = "PutItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
-          }
-      });
-  }
-
-
-  function readItem() {
-
-      var docClient = new AWS.DynamoDB.DocumentClient();
-
-      var params = {
-          TableName: "http-crud-tutorial-function",
-          Key:{
-              "FirstName": "22-003",// Partition Key
-          }
-      };
-      docClient.get(params, function(err, data) {
-          if (err) {
-              document.getElementById('textarea').innerHTML = "Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2);
-          } else {
-              document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
-          }
-      });
-  }
-
-  </script>
 </head>
 
 <body onload="checkLogin()">
@@ -96,5 +22,12 @@
 
   <textarea readonly id="textarea" style="width:400px; height:600px"></textarea>
 
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="./script2.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+  <script src="js/aws-cognito-sdk.js"></script>
+  <script src="js/amazon-cognito-identity.min.js"></script>
+
 </body>
-<>
