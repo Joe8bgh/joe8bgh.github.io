@@ -59,9 +59,9 @@ function handleFormSubmit(event) {
 
   function addResults() {
     console.log(project_json);
-    //var xhr = new XMLHttpRequest();
-    //xhr.open("PUT", "https://b1ljlllud4.execute-api.us-east-1.amazonaws.com/items" , true);
-    //xhr.send(top);
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", "https://b1ljlllud4.execute-api.us-east-1.amazonaws.com/items" , true);
+    xhr.send(top);
 
 
   }
